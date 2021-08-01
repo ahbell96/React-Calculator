@@ -3,15 +3,31 @@ import { Grid, Typography, Box, Button } from "@material-ui/core";
 import "./App.css";
 import React, { Component } from "react";
 import CalcButton from "./components/CalcButton";
+import Result from "./components/Result";
 
 export default class App extends Component {
+
+  /*
+  constructor(props) {
+    super(props);
+  }
+  */
+
   componentDidMount() {}
 
   componentDidUpdate() {}
 
   state = {
     totalValue: 0,
+    result: "test result",
+    total: null,
+    next: null,
+    operation: null
   };
+
+  setResult = () => {
+    
+  }
 
   render() {
     return (
@@ -28,6 +44,9 @@ export default class App extends Component {
           alignItems='center'
           alignContent='center'
         >
+          <Grid className='row' justifyContent='center'>
+            <Result result={this.state.result}/>
+          </Grid>
           <Grid className='row' justifyContent='center'>
             <CalcButton value='7'></CalcButton>
             <CalcButton value='8'></CalcButton>
