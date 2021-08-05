@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { Grid, Typography, Button } from "@material-ui/core";
 
-const CalcButton = ({ value }) => {
+const CalcButton = ({ value, addToResult }) => {
   const [number, setNumber] = useState(value);
 
   const isOperatorCheck = (val) => !isNaN(val) || val === "." || val === "=";
 
+  /*
   const getValue = (event) => {
     setNumber(event.target.value);
   };
+  */
 
   return (
     <Button
-      onClick={getValue}
+      onClick={() => addToResult(value)}
       value={value}
       variant='outlined'
       className={`button ${isOperatorCheck(value) ? "" : "operator"}`}
