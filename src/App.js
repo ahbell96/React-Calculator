@@ -13,10 +13,6 @@ export default class App extends Component {
     total: ""
   };
 
-  setResult = () => {
-    
-  }
-
   handleClear = () => {
     this.setState({result: "", total: ""});
   }
