@@ -1,5 +1,4 @@
-import logo from "./logo.svg";
-import { Grid, Typography, Box, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import "./App.css";
 import React, { Component } from "react";
 import CalcButton from "./components/CalcButton";
@@ -9,22 +8,9 @@ import { evaluate } from 'mathjs';
 
 export default class App extends Component {
 
-  /*
-  constructor(props) {
-    super(props);
-  }
-  */
-
-
-  componentDidMount() {}
-
-  componentDidUpdate() {}
-
   state = {
     result: "",
-    total: "",
-    next: null,
-    operation: null
+    total: ""
   };
 
   setResult = () => {
@@ -37,11 +23,9 @@ export default class App extends Component {
 
   addToResult = (value) => {
     this.setState({result: this.state.result + value});
-    console.log(this.result);
   }
 
   totalResult = () => {
-    console.log(this.state.result)
     this.setState({total: evaluate(this.state.result)})
   }
 
