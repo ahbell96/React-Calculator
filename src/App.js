@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import CalcButton from "./components/CalcButton";
 import Result from "./components/Result";
 import ClearButton from './components/ClearButton';
+import { evaluate } from 'mathjs';
 
 export default class App extends Component {
 
@@ -14,14 +15,14 @@ export default class App extends Component {
   }
   */
 
+
   componentDidMount() {}
 
   componentDidUpdate() {}
 
   state = {
-    totalValue: 0,
     result: "",
-    total: null,
+    total: "",
     next: null,
     operation: null
   };
@@ -31,12 +32,17 @@ export default class App extends Component {
   }
 
   handleClear = () => {
-    this.setState({result: ""});
+    this.setState({result: "", total: ""});
   }
 
   addToResult = (value) => {
     this.setState({result: this.state.result + value});
     console.log(this.result);
+  }
+
+  totalResult = () => {
+    console.log(this.state.result)
+    this.setState({total: evaluate(this.state.result)})
   }
 
   render() {
@@ -55,31 +61,31 @@ export default class App extends Component {
           alignContent='center'
         >
           <Grid className='row' justifyContent='center'>
-            <Result result={this.state.result}/>
+            <Result result={this.state.result} total={this.state.total}/>
           </Grid>
           <Grid className='row' justifyContent='center'>
-            <CalcButton value='7' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='8' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='9' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='*' addToResult={this.addToResult}></CalcButton>
+            <CalcButton value='7' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='8' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='9' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='*' handleClick={this.addToResult}></CalcButton>
           </Grid>
           <Grid className='row' justifyContent='center'>
-            <CalcButton value='4' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='5' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='6' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='+' addToResult={this.addToResult}></CalcButton>
+            <CalcButton value='4' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='5' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='6' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='+' handleClick={this.addToResult}></CalcButton>
           </Grid>
           <Grid className='row' justifyContent='center'>
-            <CalcButton value='1' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='2' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='3' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='-' addToResult={this.addToResult}></CalcButton>
+            <CalcButton value='1' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='2' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='3' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='-' handleClick={this.addToResult}></CalcButton>
           </Grid>
           <Grid className='row' justifyContent='center'>
-            <CalcButton value='0' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='.' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='=' addToResult={this.addToResult}></CalcButton>
-            <CalcButton value='/' addToResult={this.addToResult}></CalcButton>
+            <CalcButton value='0' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='.' handleClick={this.addToResult}></CalcButton>
+            <CalcButton value='=' handleClick={() => this.totalResult()}></CalcButton>
+            <CalcButton value='/' handleClick={this.addToResult}></CalcButton>
           </Grid>
           <Grid className='row'>
             <ClearButton handleClear={this.handleClear}>Clear</ClearButton>

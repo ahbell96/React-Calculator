@@ -1,11 +1,11 @@
 import React from 'react';
 import { Grid, Typography, Button } from '@material-ui/core';
 
-const Result = (props) => {
+const Result = ({result, total}) => {
 
     return (
         <Grid className="result">
-            <Typography>{props.result}</Typography>
+            <Typography>{total === '' ? result : total}</Typography>
         </Grid>
     )
 }
